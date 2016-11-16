@@ -1,13 +1,16 @@
 class ContactsController < ApplicationController
   def index
     @contacts = Contact.all
+    render 'index.html.erb'
   end
 
   def show
     @contact = Contact.find_by(id: params[:id])
+    render 'show.html.erb'
   end
 
   def new
+    render 'new.html.erb'
   end
 
   def create
@@ -18,6 +21,7 @@ class ContactsController < ApplicationController
 
   def edit
     @contact = Contact.find_by(id: params[:id])
+    render 'edit.html.erb'
   end
 
   def update
