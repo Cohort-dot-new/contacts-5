@@ -42,4 +42,9 @@ class ContactsController < ApplicationController
     flash[:success] = "Contact deleted."
     redirect_to "/"
   end
+
+  def index_johns
+    @contacts = Contact.all_johns
+    render 'index.html.erb'
+  end
 end
