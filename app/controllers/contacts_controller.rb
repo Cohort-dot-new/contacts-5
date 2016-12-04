@@ -15,6 +15,7 @@ class ContactsController < ApplicationController
   end
 
   def new
+    @contact = Contact.new
     render 'new.html.erb'
   end
 
@@ -27,9 +28,12 @@ class ContactsController < ApplicationController
       phone: params[:phone],
       user_id: current_user.id
     )
-    @contact.save
-    flash[:success] = "Contact created."
-    redirect_to "/contacts/#{@contact.id}"
+    if @contact.save
+      flash[:success] = "Contact created."
+      redirect_to "/contacts/#{@contact.id}"
+    else
+      render 'new.html.erb'
+    end
   end
 
   def edit
