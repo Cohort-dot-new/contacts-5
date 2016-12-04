@@ -43,9 +43,12 @@ class ContactsController < ApplicationController
     @contact.last_name = params[:last_name]
     @contact.email = params[:email]
     @contact.phone = params[:phone]
-    @contact.save
-    flash[:success] = "Contact updated."
-    redirect_to "/contacts/#{@contact.id}"
+    if @contact.save
+      flash[:success] = "Contact updated."
+      redirect_to "/contacts/#{@contact.id}"
+    else
+      render 'edit.html.erb'
+    end
   end
 
   def destroy
